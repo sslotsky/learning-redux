@@ -1,6 +1,12 @@
 (function() {
   function ViewModel() {
-    this.message = ko.observable("What a wonderful day!")
+    this.todos = ko.observableArray([{ title: 'Finish this project' }]);
+
+    this.newTodo = ko.observable('')
+    this.addTodo = function() {
+      this.todos.push({ title: this.newTodo() })
+      this.newTodo('')
+    }
   }
 
   ko.applyBindings(new ViewModel())

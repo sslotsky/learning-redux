@@ -11,9 +11,17 @@
   </head>
   <body>
     <div id="app">
-      <h1>Hello world!</h1>
-      <input name="message" value="What a wonderful day!" />
-      <p id="message">What a wonderful day!</p>
+      <h1>Todo List</h1>
+      <form id="new-todo">
+        <input name="creating-todo" />
+      </form>
+      <label>
+        Create todo:
+        <span id="creating-todo"></span>
+      </label>
+      <ul>
+        <li>Finish this project</li>
+      </ul>
     </div>
     <script src="./app.js"></script>
   </body>

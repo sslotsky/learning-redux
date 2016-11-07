@@ -1,18 +1,38 @@
 import React, { Component } from 'react'
-import Message from './Message'
+import TodoList from './TodoList'
 
 export default class App extends Component {
   state = {
-    message: 'What a wonderful day!'
+    newTodo: '',
+    todos: [{ title: 'Finish this project' }]
   }
 
   render() {
     const onChange = e => {
-      this.setState({ message: e.target.value })
+      this.setState({ newTodo: e.target.value })
+    }
+
+    const { todos, newTodo } = this.state
+
+    const addTodo = (e) => {
+      e.preventDefault()
+
+      this.setState({
+        newTodo: '',
+        todos: todos.concat({ title: newTodo })
+      })
     }
 
     return (
-      <Message message={this.state.message} onChange={onChange} />
+      <div>
+        <form onSubmit={addTodo}>
+          <input value={newTodo} onChange={onChange} />
+          <label>
+            Create todo: <span>{newTodo}</span>
+          </label>
+        </form>
+        <TodoList todos={todos} />
+      </div>
     )
   }
 }

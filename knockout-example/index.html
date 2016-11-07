@@ -11,9 +11,17 @@
   </head>
   <body>
     <div id="app">
-      <h1>Hello world!</h1>
-      <input data-bind="value: message, valueUpdate: 'keyup'" />
-      <p data-bind="text: message"></p>
+      <h1>Todo List</h1>
+      <form data-bind="submit: addTodo">
+        <input data-bind="value: newTodo, valueUpdate: 'keyup'" />
+        <label>
+          Create todo:
+          <span data-bind="text: newTodo"></span>
+        </label>
+      </form>
+      <ul data-bind="foreach: todos">
+        <li data-bind="text: title"></li>
+      </ul>
     </div>
     <script src="./app.js"></script>
   </body>
