@@ -1,14 +1,14 @@
 $(function() {
-  var $message = $('div#app span#creating-todo')
+  var $newTodo = $('div#app span#creating-todo')
   var $input = $('div#app form#new-todo input[name=creating-todo]')
   var $todoList = $('div#app ul')
 
-  var updateMessage = function(message) {
-    $message.text(message)
+  var updateNewTodo = function(todo) {
+    $newTodo.text(todo)
   }
 
   $input.on('keyup', function(e) {
-    updateMessage(e.target.value)
+    updateNewTodo(e.target.value)
   })
 
   $('div form#new-todo').on('submit', function(e) {

@@ -1,26 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import TodoList from './TodoList'
+import { connect } from './Provider'
+import { CREATE_TODO, UPDATE_TODO } from './store'
 
-export default class App extends Component {
-  state = {
-    newTodo: '',
-    todos: [{ title: 'Finish this project' }]
+const Todo = PropTypes.shape({
+  title: PropTypes.string
+})
+
+export class App extends Component {
+  static propTypes = {
+    newTodo: PropTypes.string,
+    todos: PropTypes.arrayOf(Todo).isRequired,
+    dispatch: PropTypes.func.isRequired
   }
 
   render() {
-    const onChange = e => {
-      this.setState({ newTodo: e.target.value })
-    }
+    const { todos, newTodo, dispatch } = this.props
 
-    const { todos, newTodo } = this.state
+    const onChange = e => {
+      dispatch({ type: UPDATE_TODO, todo: e.target.value })
+    }
 
     const addTodo = (e) => {
       e.preventDefault()
 
-      this.setState({
-        newTodo: '',
-        todos: todos.concat({ title: newTodo })
-      })
+      dispatch({ type: CREATE_TODO, todo: newTodo })
     }
 
     return (
@@ -36,3 +40,7 @@ export default class App extends Component {
     )
   }
 }
+
+export default connect(
+  state => state
+)(App)
