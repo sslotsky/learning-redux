@@ -30,6 +30,7 @@ export class App extends Component {
 
     return (
       <div>
+        <h1>Todo List</h1>
         <form onSubmit={addTodo}>
           <input value={newTodo} onChange={onChange} />
           <label>

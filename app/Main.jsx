@@ -6,13 +6,14 @@ import { Provider } from 'react-redux'
 import reducer from './reducer'
 
 import App from './App'
+import ReduxTroll from './ReduxTroll'
 
 const store = createStore(reducer)
 
 ReactDOM.render((
   <Provider store={store}>
     <div>
-      <h1>Todo List</h1>
+      <ReduxTroll />
       <App />
     </div>
   </Provider>
