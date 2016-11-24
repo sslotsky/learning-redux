@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import TodoList from './TodoList'
-import { connect } from './Provider'
-import { CREATE_TODO, UPDATE_TODO } from './store'
+import { connect } from 'react-redux'
+import * as actions from './actions'
 
 const Todo = PropTypes.shape({
   title: PropTypes.string
@@ -11,20 +11,21 @@ export class App extends Component {
   static propTypes = {
     newTodo: PropTypes.string,
     todos: PropTypes.arrayOf(Todo).isRequired,
-    dispatch: PropTypes.func.isRequired
+    updateTodo: PropTypes.func.isRequired,
+    createTodo: PropTypes.func.isRequired
   }
 
   render() {
-    const { todos, newTodo, dispatch } = this.props
+    const { todos, newTodo, updateTodo, createTodo } = this.props
 
     const onChange = e => {
-      dispatch({ type: UPDATE_TODO, todo: e.target.value })
+      updateTodo(e.target.value)
     }
 
     const addTodo = (e) => {
       e.preventDefault()
 
-      dispatch({ type: CREATE_TODO, todo: newTodo })
+      createTodo(newTodo)
     }
 
     return (
@@ -42,5 +43,6 @@ export class App extends Component {
 }
 
 export default connect(
-  state => state
+  state => state,
+  actions
 )(App)
