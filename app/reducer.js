@@ -12,17 +12,12 @@ export default function reducer(state = initialState, action) {
         ...state,
         newTodo: action.todo
       }
-
-      break
     case actionTypes.CREATE_TODO:
       return {
         newTodo: '',
         todos: state.todos.concat({ title: action.todo })
       }
-
-      break
     default:
       return state
-      break
   }
 }
