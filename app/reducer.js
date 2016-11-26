@@ -1,23 +1,21 @@
 import * as actionTypes from './actionTypes'
-import { resolveEach } from './reduxResolver'
+import { resolveEach } from 'redux-resolver'
+import Immutable, { Map } from 'immutable'
 
-const initialState = {
+const initialState = Immutable.fromJS({
   newTodo: '',
   todos: [{ title: 'Finish this project' }]
-}
+})
 
 function updateTodo(state, action) {
-  return {
-    ...state,
-    newTodo: action.todo
-  }
+  return state.set('newTodo', action.todo)
 }
 
 function createTodo(state, action) {
-  return {
+  return state.merge({
     newTodo: '',
-    todos: state.todos.concat({ title: action.todo })
-  }
+    todos: state.get('todos').push(Map({ title: action.todo }))
+  })
 }
 
 export default resolveEach(initialState, {
