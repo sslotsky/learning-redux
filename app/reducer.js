@@ -1,23 +1,26 @@
 import * as actionTypes from './actionTypes'
+import { resolveEach } from './reduxResolver'
 
 const initialState = {
   newTodo: '',
   todos: [{ title: 'Finish this project' }]
 }
 
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case actionTypes.UPDATE_TODO:
-      return {
-        ...state,
-        newTodo: action.todo
-      }
-    case actionTypes.CREATE_TODO:
-      return {
-        newTodo: '',
-        todos: state.todos.concat({ title: action.todo })
-      }
-    default:
-      return state
+function updateTodo(state, action) {
+  return {
+    ...state,
+    newTodo: action.todo
   }
 }
+
+function createTodo(state, action) {
+  return {
+    newTodo: '',
+    todos: state.todos.concat({ title: action.todo })
+  }
+}
+
+export default resolveEach(initialState, {
+  [actionTypes.UPDATE_TODO]: updateTodo,
+  [actionTypes.CREATE_TODO]: createTodo
+})
