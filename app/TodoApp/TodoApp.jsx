@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import TodoList from './TodoList'
 import { connect } from 'react-redux'
-import * as actions from './actions'
+import * as actions from '../actions'
 
 const Todo = PropTypes.shape({
   title: PropTypes.string

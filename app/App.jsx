@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import TodoApp from './TodoApp'
-import PagerApp from './PagerApp'
+import TodoApp from './TodoApp/TodoApp'
+import PagerApp from './PagerApp/PagerApp'
 
 import './styles.scss'
 
