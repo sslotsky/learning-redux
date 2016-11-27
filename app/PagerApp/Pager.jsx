@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import * as actions from './actions'
 
 export function Pager({ page, prev, next }) {
   return (
@@ -17,7 +17,7 @@ Pager.propTypes = {
 }
 
 export default connect(
-  state => state.toJS(),
+  state => state.pager.toJS(),
   actions
 )(Pager)
 

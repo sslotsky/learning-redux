@@ -8,10 +8,3 @@ export function createTodo(todo) {
   return { type: actionTypes.CREATE_TODO, todo }
 }
 
-export function prev() {
-  return { type: actionTypes.PREV }
-}
-
-export function next() {
-  return { type: actionTypes.NEXT }
-}

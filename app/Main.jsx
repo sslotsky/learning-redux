@@ -7,7 +7,6 @@ import reducer from './reducer'
 
 import App from './App'
 import DevTools from './DevTools'
-import ReduxTroll from './ReduxTroll'
 
 const store = createStore(reducer, compose(DevTools.instrument()))
 
