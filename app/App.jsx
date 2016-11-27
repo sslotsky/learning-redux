@@ -1,49 +1,33 @@
-import React, { Component, PropTypes } from 'react'
-import TodoList from './TodoList'
-import { connect } from 'react-redux'
-import * as actions from './actions'
+import React, { Component } from 'react'
+import TodoApp from './TodoApp'
+import PagerApp from './PagerApp'
 
-const Todo = PropTypes.shape({
-  title: PropTypes.string
-})
+import './styles.scss'
 
-export class App extends Component {
-  static propTypes = {
-    newTodo: PropTypes.string,
-    todos: PropTypes.arrayOf(Todo).isRequired,
-    updateTodo: PropTypes.func.isRequired,
-    createTodo: PropTypes.func.isRequired
+const components = {
+  todos: TodoApp,
+  pager: PagerApp
+}
+
+export default class App extends Component {
+  state = {
+    page: 'todos'
   }
 
   render() {
-    const { todos, newTodo, updateTodo, createTodo } = this.props
+    const navigate = page => () =>
+      this.setState({ page })
 
-    const onChange = e => {
-      updateTodo(e.target.value)
-    }
-
-    const addTodo = (e) => {
-      e.preventDefault()
-
-      createTodo(newTodo)
-    }
+    const Page = components[this.state.page]
 
     return (
       <div>
-        <h1>Todo List</h1>
-        <form onSubmit={addTodo}>
-          <input value={newTodo} onChange={onChange} />
-          <label>
-            Create todo: <span>{newTodo}</span>
-          </label>
-        </form>
-        <TodoList todos={todos} />
+        <ul className="nav">
+          <li><a onClick={navigate('todos')}>Todos</a></li>
+          <li><a onClick={navigate('pager')}>Pager</a></li>
+        </ul>
+        <Page />
       </div>
     )
   }
 }
-
-export default connect(
-  state => state.toJS(),
-  actions
-)(App)
