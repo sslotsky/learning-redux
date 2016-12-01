@@ -4,6 +4,7 @@ import { createStore, compose, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerMiddleware, push } from 'react-router-redux'
+import thunk from 'redux-thunk'
 
 import reducer from './reducer'
 
@@ -13,7 +14,7 @@ import DevTools from './DevTools'
 const router = routerMiddleware(browserHistory)
 const store = createStore(
   reducer,
-  compose(applyMiddleware(router), DevTools.instrument())
+  compose(applyMiddleware(router, thunk), DevTools.instrument())
 )
 
 const history = syncHistoryWithStore(browserHistory, store)

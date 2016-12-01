@@ -17,6 +17,9 @@ export default class App extends Component {
           <li>
             <Link to="/pager">Pager</Link>
           </li>
+          <li>
+            <Link to="/recipes">Recipes</Link>
+          </li>
         </ul>
         {this.props.children}
       </div>
